@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+<link
+	href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Theme One</title>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed'
+	rel='stylesheet' type='text/css' />
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<script>
+	function submit() {
+		var user = $("#userid").val();
+		var password = $("#passcode").val();
+
+		/*$.ajax({
+			type : "POST",
+			url : "http://localhost:8082/FlashCardProj/rs/api/login",
+			data : "{login:{userName:" + user + "" + ",password:" + password
+					+ "},questions:[]}",
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : OnGetMemberSuccess,
+			error : OnGetMemberError
+		});*/
+		$.ajax({
+			type : "POST",
+			url : "http://localhost:8082/FlashCardProj/rs/test/getQuestions",
+			data : "{topic:{topicId:1}}",
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : OnGetMemberSuccess,
+			error : OnGetMemberError
+		});
+
+	}
+
+	function OnGetMemberSuccess(data) {
+		var status='';
+		for (var key in data) {
+			status=data[key];
+	    }
+		
+		if(status==true){
+			window.location.replace("http://localhost:8082/FlashCardProj/flashcardquest.html");
+		}
+	}
+
+	function OnGetMemberError(request, status, error) {
+		alert("Failed");
+	}
+</script>
+
+
+
+
+
+
+</head>
+<body>
+	<div class="wrapper">
+		<div class="logo-menu-container">
+			<div class="logo">Science Trek</div>
+			<div class="menu">
+				<ul>
+					<li><a href="in" class="active">Home</a></li>
+					<li><a href="#">About</a></li>
+					<!--<li><a href="#">Solutions</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Blog</a></li>-->
+					<li class="nobg"><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="searchform-container">
+			<div class="searchform-content">A Knowledge Library For The
+				Young Mind!</div>
+			<!--<div class="search">
+      <div class="search-input">
+        <input type="text" name="search" class="search-input-textfield" />
+      </div>
+      <div class="search-icon"><a href="#"><img src="images/search-icon.png" alt="search" /></a></div>
+    </div>-->
+		</div>
+		<div class="clear"></div>
+		<div class="page">
+			<!--<div class="main-banner">-->
+			<img src="images/scienceTheme.jpg" alt="banner"
+				style="width: 920px; height: 250px" />
+			<!--</div>-->
+			<div class="clear"></div>
+			<div class="left-column">
+				<div class="dark-panel">
+					<div class="dark-panel-top"></div>
+					<div class="dark-panel-center">
+						<ul>
+							<li>
+								<h1>Login</h1>
+							</li>
+							<li>
+								<p>Connect with us to become a Science - Trekker!</p>
+							</li>
+							<li class="username"><input id="userid" type="text"
+								class="login-input" /></li>
+							<li class="password"><input id="passcode" type="password"
+								class="login-input" /></li>
+							<li><div class="button" onclick="submit()">Submit</div></li>
+
+
+							<li>Not a user?</li>
+							<li><div class="button">Register</div></li>
+						</ul>
+					</div>
+					<div class="dark-panel-bottom"></div>
+				</div>
+				<!--<div class="light-panel">
+        <div class="light-panel-top"></div>
+        <div class="light-panel-center">
+          <h1>Quisque egetari</h1>
+          <ul>
+            <li><a href="#">+ Etiam nec neque nisiorn fauci</a></li>
+            <li><a href="#">+ Proin suscipit justo euismod ino</a></li>
+            <li><a href="#">+ Integer nec mi non elit gra</a></li>
+            <li><a href="#">+ Nunc a massa nulla, quis elem</a></li>
+            <li><a href="#">+ Cras iaculis felis ut quam</a></li>
+            <li><a href="#">+ Suspendisse sollicitudin enim</a></li>
+            <li class="no-border"><a href="#">+ Proin tempor magna vel sap</a></li>
+          </ul>
+        </div>
+        <div class="light-panel-bottom"></div>
+      </div>-->
+				<div class="dark-panel">
+					<div class="dark-panel-top"></div>
+					<div class="dark-panel-center">
+						<ul>
+							<li>
+								<h1>Reviews</h1>
+							</li>
+							<li class="date">06-23-2015</li>
+							<li class="news">Flashcards are making the learning
+								experience easier!</li>
+							<li class="date">06-17-2012</li>
+							<li class="news">Adaptive learning is a great concept!<br />
+								I would recommend Science Trek to every student.
+							</li>
+							<li class="date">06-08-2014</li>
+							<li class="news-no-border">Proud to be a Science Trekker<br />
+								Feels good to be associated with it.
+							</li>
+							<li class="date">06-08-2014</li>
+							<li class="news-no-border">Proud to be a Science Trekker<br />
+								Feels good to be associated with it.
+							</li>
+							<li class="date">06-08-2014</li>
+							<li class="news-no-border">Proud to be a Science Trekker<br />
+								Feels good to be associated with it.
+							</li>
+							<li class="date">06-08-2014</li>
+							<li class="news-no-border">Proud to be a Science Trekker<br />
+								Feels good to be associated with it.
+							</li>
+						</ul>
+					</div>
+					<div class="dark-panel-bottom"></div>
+				</div>
+			</div>
+			<!--<div class="right-column">
+      <div class="right-column-content">
+        <div class="right-column-content-heading">
+          <h1>Choose a Science-Trek Topic</h1>
+          <h2>Science Trek uses flashcards to make your learning experience enjoyable!</h2>
+        </div>
+        <div class="right-column-content-img-left"> <img src="images/physics.jpg" alt="banner" /> </div>
+        <div class="right-column-content-content">
+          <p>Cras non ante eu ligula bibendum elementum vel vitae
+            lectus. Cras eu risus eu <a href="#">enim semper</a> vulputate. Integer a lorem lorem, nec convallis elit. </p>
+          <p>Nam metus justo, consequat at lacinia sit amet, adipiscing at dui. Quisque eu velit at velit accumsan suscipit sit amet ac velit. Pellentesque tempus, dolor ac tincidunt ma.</p>
+          <div class="button"><a href="#" >More Info</a></div>
+        </div>
+      </div>-->
+			<div class="right-column-content">
+				<div class="right-column-content-heading">
+					<h1>As a Science-Trekker,</h1>
+					<h2>You have a variety of options to choose from!</h2>
+				</div>
+				<div class="right-column-content-content">
+					<p>
+						<strong>PHYSICS</strong><br /> Learn about the basic principles
+						that govern the physical world around us. Basic understanding of
+						math is necessary.
+					</p>
+					<!--<div class="button"><a href="#">More Info</a></div>-->
+				</div>
+				<br />
+				<!--<div class="right-column-content-img-right">-->
+				<img src="images/physics.jpg" alt="banner"
+					style="width: 500px; height: 150px" />
+				<!--</div>-->
+				<div class="clear right-cloumn-content-border"></div>
+				<br /> <br />
+				<!--<div class="right-column-content-content">-->
+				<p>
+					<strong>CHEMISTRY</strong><br /> Learn chemistry! Get chemistry
+					help, tutorials, example problems, self-quizzes, and chemistry
+					tools so you can learn the concepts of general chemistry.
+				</p>
+				<!--<div class="button"><a href="#">More Info</a></div>-->
+				<!--</div>-->
+				<br />
+				<!--<div class="right-column-content-img-right">-->
+				<img src="images/chem.jpg" alt="banner"
+					style="width: 500px; height: 150px" />
+				<!--</div>-->
+				<div class="clear right-cloumn-content-border"></div>
+				<!--<div class="right-column-content-content">-->
+				<br /> <br />
+				<p>
+					<strong>BIOLOGY</strong><br /> Life is beautiful! From atoms to
+					cells, from genes to proteins, from populations to ecosystems,
+					biology is the study of the fascinating and intricate systems that
+					make life possible. Dive in to learn more about the many branches
+					of biology and why they are exciting and important. Covers topics
+					seen in a high school or first-year college biology course.
+				</p>
+				<!--<div class="button"><a href="#" >More Info</a></div>-->
+				<!--</div>-->
+				<br />
+				<!--<div class="right-column-content-img-right right-column-content-img-right-margin-bottom-none">-->
+				<img src="images/bio.jpg" alt="banner"
+					style="width: 500px; height: 150px" />
+				<!--</div>-->
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="footer-wrapper">
+  <div class="footer-top"></div>
+  <div class="footer-center">
+    <div class="footer-content-left">
+      <h1>In tempor aliquam purus eu sagittis</h1>
+      <h2>Sed ultrices tristique magna non accumsan massa vel libero posuere sagitt nisi</h2>
+      <p>Aenean sit amet leo elit, nec ornare felis. Fusce laoreet sapien id ipsum pharetra varius. Integer a turpis tortor. Aliquam ac dignissim nibh. Mauris at posuere felis. Proin egestas, dolor ut imperdiet porta, velit lorem luctus massa, a pharetra felis lorem a nulla. </p>
+      <p>Vivamus vel augue et nibh accumsan tempus nec sed metus. Nam porta massa non sapien congue lobortis. Nam pulvinar suscipit tellus id vestibulum. </p>
+    </div>
+    <div class="footer-content-right">
+      <h1>Nullam eleme</h1>
+      <h2>Nam fermentum ornare dui</h2>
+      <p>Proin egestas, dolor ut imperdiet porta, velit lorem luctus massa, a pharetra felis lorem a nulla  ivam.</p>
+      <h3>Email: kavdiaon@mail.uc.edu</h3>
+      <h3>Phone: (513) 886-6647</h3>
+    </div>
+  </div>
+  <div class="footer-bottom"></div>
+</div>-->
+	<div class="clear"></div>
+</body>
+</html>

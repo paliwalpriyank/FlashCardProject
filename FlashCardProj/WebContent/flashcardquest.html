@@ -1,0 +1,168 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Theme One</title>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed'
+	rel='stylesheet' type='text/css' />
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+
+<script>
+	function submit() {
+		var selected = '';
+
+		var selectedPhysicsTopic = $('#physicsOptions:selected').val();
+		var selectedChemistryTopic = $('#chemistryOptions:selected').val();
+		var selectedBiologyTopic = $('#biologyOptions:selected').val();
+
+		var count = 0;
+
+		if (selectedPhysicsTopic != "Selected") {
+			count = count + 1;
+			selected = selectedPhysicsTopic;
+		}
+
+		if (selectedChemistryTopic != "Selected") {
+			count = count + 1;
+			selected = selectedChemistryTopic;
+		}
+
+		if (selectedBiologyTopic != "Selected") {
+			count = count + 1;
+			selected = selectedBiologyTopic;
+		}
+
+		if (count == 1) {
+
+			$.ajax({
+						type : "POST",
+						url : "http://localhost:8080/FlashCardBackEnd/rs/api/wordsAndMeanings",
+						data : "{topic:{topicId:0,topicName:Dynamics},questions:[]}",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : OnGetMemberSuccess,
+						error : OnGetMemberError
+					});
+
+		} else {
+			alert("You have to select only one option");
+
+		}
+
+	}
+
+	function OnGetMemberSuccess(data) {
+		var status = '';
+		for ( var key in data) {
+			status = data[key];
+			alert(status);
+		}
+
+	}
+
+	function OnGetMemberError(request, status, error) {
+		alert("Failed");
+	}
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="logo-menu-container">
+			<div class="logo">Science Trek</div>
+			<div class="menu">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#">About</a></li>
+					<!--<li><a href="#">Solutions</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>-->
+					<li class="nobg"><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="right-column-test">
+			<div class="right-column-content-heading">
+				<h1>Choose a Science-Trek Topic</h1>
+				<br />
+				<h2>Science Trek uses flashcards to make your learning
+					experience enjoyable!</h2>
+			</div>
+			<div class="right-column-content-bkg">
+				<p>PHYSICS</p>
+
+
+				<div class="reg_section" margin="center">
+					<br />
+					<h2>Choose your subtopic</h2>
+					<select id="physicsOptions">
+						<option value="">Select</option>
+						<option value="">Dynamics</option>
+						<option value="">Kinematics</option>
+						<option value="">Thermodynamics</option>
+						<option value="">Semiconductors</option>
+						<option value="">Electromagnetism</option>
+						<option value="">All</option>
+					</select>
+					<!--<textarea name="textarea" id="" placeholder="SubTopic" style="color:#000000"></textarea>-->
+				</div>
+				<br />
+				<div class="button" onclick="submit()">
+				<a href="#">Submit</a></div>
+
+			</div>
+			<!--<div class="right-column-content-img-right"> <img src="images/physics.jpg" alt="banner" /> </div>-->
+			<div class="clear right-cloumn-content-border"></div>
+			<div class="right-column-content-content">
+				<p>CHEMISTRY</p>
+				<div class="reg_section" margin="center">
+					<h2>Choose your subtopic</h2>
+					<select id="chemistryOptions">
+						<option value="">Select</option>
+						<option value="">Organic Chemistry</option>
+						<option value="">Gases</option>
+						<option value="">Acids and Bases</option>
+						<option value="">Main-Group Metals</option>
+						<option value="">Solutions</option>
+						<option value="">All</option>
+					</select>
+				</div>
+				<br />
+				<div class="button" onclick="submit()">Submit</div>
+			</div>
+			<!--<div class="right-column-content-img-right"> <img src="images/chem.jpg" alt="banner" /> </div>-->
+			<div class="clear right-cloumn-content-border"></div>
+			<div class="right-column-content-content">
+				<p>BIOLOGY</p>
+				<div class="reg_section" margin="center">
+					<h2>Choose your subtopic</h2>
+					<select id="biologyOptions">
+						<option value="">Select</option>
+						<option value="">Plant Cell Biology</option>
+						<option value="">Cell Biology</option>
+						<option value="">Classification of Systems</option>
+						<option value="">EcoSystem</option>
+						<option value="">Food Chain</option>
+						<option value="">All</option>
+					</select>
+				</div>
+				<br />
+				<div class="button" onclick="submit()">Submit</div>
+			</div>
+			<!--<div class="right-column-content-img-right right-column-content-img-right-margin-bottom-none"> <img src="images/bio.jpg" alt="banner" /> </div>-->
+		</div>
+
+
+
+
+
+	</div>
+	<div class="clear"></div>
+</body>
+</html>
